@@ -24,6 +24,8 @@ public class Tile : MonoBehaviour
 
     public float DarknessPercent = 0.95f;
 
+    public Power PowerPrefab;
+
     private Grid _grid;
     private SpriteRenderer _renderer;
     private bool _hovered;
@@ -72,6 +74,15 @@ public class Tile : MonoBehaviour
                 break;
 	        case TileType.Generator:
 	            _renderer.sprite = GeneratorSprite;
+
+	            if (Input.GetKeyUp(KeyCode.P))
+	            {
+	                foreach (var path in _grid.ValidConnections)
+	                {
+	                    var newPower = Instantiate(PowerPrefab, transform.position, Quaternion.identity);
+	                    newPower.Path = path;
+	                }
+	            }
                 break;
 	        default:
 	            throw new ArgumentOutOfRangeException();

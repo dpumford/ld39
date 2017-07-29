@@ -9,7 +9,7 @@ public class Power : MonoBehaviour
     public List<Tile> Path;
     public float Speed;
 
-    private const float DestinationTolerance = 0.01f;
+    private const float DestinationTolerance = 0.1f;
 
 	// Use this for initialization
 	void Start () {

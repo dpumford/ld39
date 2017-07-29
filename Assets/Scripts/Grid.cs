@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Assets.Helpers;
 using UnityEngine;
 
 public class Grid : MonoBehaviour
@@ -8,59 +10,112 @@ public class Grid : MonoBehaviour
     //Assumes that the grid is square
     public List<Tile> Tiles;
 
-    public int Size
-    {
-        get { return Convert.ToInt32(Math.Sqrt(Tiles.Count)); }
-    }
-
     // Use this for initialization
 	void Start ()
 	{
-        //TODO: Generate these based on size
-	    //GenerateTiles();
+        //TODO: Generate tiles based on size
 	}
 
-    public Tile GetRelative(Tile context, int dX, int dY)
+    public bool IsTileConnected(Tile tile)
     {
-        var tileIndex = Tiles.FindIndex(tile => tile == context);
-        return Get(XFromIndex(tileIndex) + dX, YFromIndex(tileIndex) + dY);
+        var cities = Tiles.Where(t => t.Type == Tile.TileType.City).ToList();
+        var generators = Tiles.Where(t => t.Type == Tile.TileType.Generator).ToList();
+
+        foreach (var generator in generators)
+        {
+            foreach (var city in cities)
+            {
+                var possiblePath = Pathfinder.AStar(Tiles, generator, city, Heuristic, GetNeighbors);
+
+                if (possiblePath != null)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
-    public Tile Get(int x, int y)
+    //TODO make this not assume the size.
+    private static IList<Tile> GetNeighbors(List<Tile> tiles, Tile tile)
     {
-        if (x < 0 || x > Size || y < 0 || y > Size)
+        var neighbors = new List<Tile>();
+        var size = SquareSize(tiles);
+
+        for (var dX = -1; dX <= 1; dX++)
+        {
+            for (var dY = -1; dY <= 1; dY++)
+            {
+                if (dX != dY)
+                {
+                    var tileIndex = Index(tiles, tile);
+                    var tileX = XFromIndex(tileIndex, size);
+                    var tileY = YFromIndex(tileIndex, size);
+
+                    var neighbor = Get(tileX + dX, tileY + dY, tiles, size);
+
+
+                    //TODO: Allow other types, too
+                    if (neighbor != null && neighbor.Type != Tile.TileType.Normal)
+                    {
+                        neighbors.Add(neighbor);
+                    }
+                }
+            }
+        }
+
+        return neighbors;
+    }
+
+    private static int Heuristic(List<Tile> space, Tile tileA, Tile tileB)
+    {
+        var size = SquareSize(space);
+
+        var indexA = Index(space, tileA);
+        var indexB = Index(space, tileB);
+
+        var xA = XFromIndex(indexA, size);
+        var yA = XFromIndex(indexA, size);
+
+        var xB = XFromIndex(indexB, size);
+        var yB = XFromIndex(indexB, size);
+
+        return Math.Abs(xA - xB) + Math.Abs(yA - yB);
+    }
+
+    private static int SquareSize(List<Tile> tiles)
+    {
+        return Convert.ToInt32(Math.Sqrt(tiles.Count));
+    }
+
+    public static Tile Get(int x, int y, IList<Tile> tiles, int size)
+    {
+        if (x < 0 || x >= size || y < 0 || y >= size)
         {
             return null;
         }
 
-        return Tiles[x + y * Size];
+        return tiles[x + y * size];
     }
 
-    public int XFromIndex(int index)
+    public static int Index(List<Tile> space, Tile tile)
     {
-        return index % Size;
+        return space.FindIndex(t => t == tile);
     }
 
-    public int YFromIndex(int index)
+    public static int XFromIndex(int index, int size)
     {
-        return index / Size;
+        return index % size;
     }
 
-    private void GenerateTiles()
+    public static int YFromIndex(int index, int size)
     {
-        var gridBounds = gameObject.GetComponent<Collider2D>().bounds;
-
-        for (var y = 0; y < Tiles.Count; y++)
-        {
-            for (var x = 0; x < Tiles.Count; x++)
-            {
-                //TODO: Get the math right
-            }
-        }
+        return index / size;
     }
 
     // Update is called once per frame
-	void Update () {
-		
+	void Update ()
+	{
 	}
 }

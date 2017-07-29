@@ -1,13 +1,24 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Tile : MonoBehaviour
 {
-    public bool Road;
+    public enum TileType
+    {
+        Normal,
+        Transport,
+        City,
+        Generator
+    }
+
+    public TileType Type = TileType.Normal;
     public bool Enabled = true;
 
     public Sprite Normal;
+    public Sprite CitySprite;
+    public Sprite GeneratorSprite;
     public Sprite EnabledRoad;
     public Sprite DisabledRoad;
 
@@ -20,19 +31,19 @@ public class Tile : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-	    _grid = GetComponentInParent<Grid>();
+	    _grid = FindObjectOfType<Grid>();
 	    _renderer = GetComponent<SpriteRenderer>();
 	}
 
     void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Type == TileType.Normal && Input.GetMouseButtonDown(0))
         {
-            Road = true;
+            Type = TileType.Transport;
         }
-        else if (Input.GetMouseButtonDown(1))
+        else if (Type == TileType.Transport && Input.GetMouseButtonDown(1))
         {
-            Road = false;
+            Type = TileType.Normal;
         }
 
         _hovered = true;
@@ -44,18 +55,29 @@ public class Tile : MonoBehaviour
     }
 	
 	// Update is called once per frame
-	void Update () {
-	    if (Road)
+	void Update ()
+	{
+	    Enabled = _grid.IsTileConnected(this);
+
+	    switch (Type)
 	    {
-	        _renderer.sprite = Enabled ? EnabledRoad : DisabledRoad;
-	    }
-	    else
-	    {
-	        _renderer.sprite = Normal;
+	        case TileType.Normal:
+	            _renderer.sprite = Normal;
+                break;
+	        case TileType.Transport:
+	            _renderer.sprite = Enabled ? EnabledRoad : DisabledRoad;
+                break;
+	        case TileType.City:
+	            _renderer.sprite = CitySprite;
+                break;
+	        case TileType.Generator:
+	            _renderer.sprite = GeneratorSprite;
+                break;
+	        default:
+	            throw new ArgumentOutOfRangeException();
 	    }
 
 	    var darkness = _hovered ? 1 : Mathf.Clamp(DarknessPercent, 0f, 1f);
         _renderer.color = new Color(darkness, darkness, darkness);
-
 	}
 }

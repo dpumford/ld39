@@ -78,11 +78,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38ca71a3ebdfe7e4e93d3ba9c300366a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Road: 0
+  Type: 0
   Enabled: 1
   Normal: {fileID: 21300000, guid: aa687651fe1e3dc41b5d8f9bf0918640, type: 3}
+  CitySprite: {fileID: 21300000, guid: bdf79b1db34e17346b1d2dc57993e4f0, type: 3}
+  GeneratorSprite: {fileID: 21300000, guid: e30e1e271d0a7df45b753c55b39e696f, type: 3}
   EnabledRoad: {fileID: 21300000, guid: 752948d912214bf47a6d2a704168b5d2, type: 3}
   DisabledRoad: {fileID: 21300000, guid: 291d1bd8fe48f33478260894581a1a2a, type: 3}
+  DarknessPercent: 0.95
 --- !u!212 &212307668247865794
 SpriteRenderer:
   m_ObjectHideFlags: 1

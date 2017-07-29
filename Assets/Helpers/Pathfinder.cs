@@ -6,7 +6,7 @@ namespace Assets.Helpers
 {
     public static class Pathfinder
     {
-        public static IList<T> AStar<T>(List<T> space, T start, T end, Func<List<T>, T, T, int> heuristic, Func<List<T>, T, IList<T>> getNeighbors) where T : class
+        public static List<T> AStar<T>(List<T> space, T start, T end, Func<List<T>, T, T, int> heuristic, Func<List<T>, T, List<T>> getNeighbors, List<T> excludeEntities = null) where T : class
         {
             // The set of nodes already evaluated
             var closedSet = new List<T>();
@@ -53,6 +53,11 @@ namespace Assets.Helpers
                 closedSet.Add(current);
 
                 var neighbors = getNeighbors(space, current);
+
+                if (excludeEntities != null)
+                {
+                    neighbors = neighbors.Except(excludeEntities).ToList();
+                }
 
                 foreach (var neighbor in neighbors) {
                     if (closedSet.Contains(neighbor))
@@ -101,7 +106,7 @@ namespace Assets.Helpers
             return minEntity;
         }
 
-        private static IList<T> ReconstructPath<T>(IDictionary<T, T> cameFrom, T almostEnd)
+        private static List<T> ReconstructPath<T>(IDictionary<T, T> cameFrom, T almostEnd)
         {
             var total_path = new List<T> { almostEnd };
             var current = almostEnd;

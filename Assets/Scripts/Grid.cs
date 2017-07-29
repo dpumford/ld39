@@ -10,35 +10,23 @@ public class Grid : MonoBehaviour
     //Assumes that the grid is square
     public List<Tile> Tiles;
 
+    private List<List<Tile>> _validConnections;
+
     // Use this for initialization
 	void Start ()
 	{
         //TODO: Generate tiles based on size
+
+        _validConnections = new List<List<Tile>>();
 	}
 
     public bool IsTileConnected(Tile tile)
     {
-        var cities = Tiles.Where(t => t.Type == Tile.TileType.City).ToList();
-        var generators = Tiles.Where(t => t.Type == Tile.TileType.Generator).ToList();
-
-        foreach (var generator in generators)
-        {
-            foreach (var city in cities)
-            {
-                var possiblePath = Pathfinder.AStar(Tiles, generator, city, Heuristic, GetNeighbors);
-
-                if (possiblePath != null)
-                {
-                    return true;
-                }
-            }
-        }
-
-        return false;
+        return _validConnections.Any(connection => connection.Contains(tile));
     }
 
     //TODO make this not assume the size.
-    private static IList<Tile> GetNeighbors(List<Tile> tiles, Tile tile)
+    private static List<Tile> GetNeighbors(List<Tile> tiles, Tile tile)
     {
         var neighbors = new List<Tile>();
         var size = SquareSize(tiles);
@@ -47,7 +35,7 @@ public class Grid : MonoBehaviour
         {
             for (var dY = -1; dY <= 1; dY++)
             {
-                if (dX != dY)
+                if (Math.Abs(dX) != Math.Abs(dY))
                 {
                     var tileIndex = Index(tiles, tile);
                     var tileX = XFromIndex(tileIndex, size);
@@ -117,5 +105,29 @@ public class Grid : MonoBehaviour
     // Update is called once per frame
 	void Update ()
 	{
-	}
+	    _validConnections.Clear();
+
+        var cities = Tiles.Where(t => t.Type == Tile.TileType.City).ToList();
+	    var generators = Tiles.Where(t => t.Type == Tile.TileType.Generator).ToList();
+
+	    foreach (var generator in generators)
+	    {
+	        foreach (var city in cities)
+	        {
+	            List<Tile> possiblePath;
+	            List<Tile> excludeTiles = new List<Tile>();
+
+	            do
+	            {
+	                possiblePath = Pathfinder.AStar(Tiles, generator, city, Heuristic, GetNeighbors, excludeTiles);
+
+	                if (possiblePath != null)
+	                {
+	                    _validConnections.Add(possiblePath);
+                        excludeTiles.AddRange(possiblePath.GetRange(1, possiblePath.Count - 1));
+	                }
+	            } while (possiblePath != null);
+	        }
+	    }
+    }
 }

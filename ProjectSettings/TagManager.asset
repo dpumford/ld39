@@ -41,3 +41,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: PowerParticles
+    uniqueID: 381444577
+    locked: 0

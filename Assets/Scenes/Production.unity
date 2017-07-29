@@ -492,7 +492,7 @@ Transform:
   - {fileID: 1547179767}
   - {fileID: 1546405953}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1188806313
 Prefab:
@@ -1052,7 +1052,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4605146364986654, guid: 667983ec6b135f34fb6906096a1ba70d, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 114564097013711174, guid: 667983ec6b135f34fb6906096a1ba70d,
         type: 2}
@@ -1134,7 +1134,8 @@ Prefab:
       propertyPath: Tiles.Array.data[15]
       value: 
       objectReference: {fileID: 1546405954}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 61604221759689152, guid: 667983ec6b135f34fb6906096a1ba70d, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 667983ec6b135f34fb6906096a1ba70d, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1685421204

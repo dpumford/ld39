@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Assets.Helpers;
 using UnityEngine;
@@ -10,7 +11,11 @@ public class Grid : MonoBehaviour
     //Assumes that the grid is square
     public List<Tile> Tiles;
 
-    private List<List<Tile>> _validConnections;
+    public ReadOnlyCollection<List<Tile>> ValidConnections {
+        get { return _validConnections.AsReadOnly(); }
+    }
+
+private List<List<Tile>> _validConnections;
 
     // Use this for initialization
 	void Start ()

@@ -4597,6 +4597,16 @@ Prefab:
       propertyPath: Type
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114421937103244248, guid: b4b97cc3439fd714a91b01560b85c8f6,
+        type: 2}
+      propertyPath: PowerDelta
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114421937103244248, guid: b4b97cc3439fd714a91b01560b85c8f6,
+        type: 2}
+      propertyPath: PowerDeltaSeconds
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b4b97cc3439fd714a91b01560b85c8f6, type: 2}
   m_IsPrefabParent: 0

@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4605146364986654}
   - component: {fileID: 114564097013711174}
   - component: {fileID: 61604221759689152}
+  - component: {fileID: 114032072729713596}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -66,6 +67,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 8, y: 8}
   m_EdgeRadius: 0
+--- !u!114 &114032072729713596
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1545192203005792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1bd087f289637a47a1a03fd6ba6219d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RoadCreateCost: 5
+  RoadDestroyCost: 2
+  PowerGenerateAmount: 1
+  PowerConsumeAmount: 5
+  PowerCreateCost: 5
+  TotalPower: 100
 --- !u!114 &114564097013711174
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -25,27 +25,34 @@ public class Tile : MonoBehaviour
     public float DarknessPercent = 0.95f;
 
     public Power PowerPrefab;
+    public int Power;
+    public float PowerDeltaSeconds;
 
     private Grid _grid;
+    private PowerSystem _powerSystem;
     private SpriteRenderer _renderer;
     private bool _hovered;
+    private float _powerTimer;
 
 	// Use this for initialization
 	void Start ()
 	{
 	    _grid = FindObjectOfType<Grid>();
+	    _powerSystem = FindObjectOfType<PowerSystem>();
 	    _renderer = GetComponent<SpriteRenderer>();
 	}
 
     void OnMouseOver()
     {
-        if (Type == TileType.Normal && Input.GetMouseButtonDown(0))
+        if (Type == TileType.Normal && Input.GetMouseButtonUp(0) && _powerSystem.TotalPower > _powerSystem.RoadCreateCost)
         {
             Type = TileType.Transport;
+            _powerSystem.AddPower(_powerSystem.RoadCreateCost * -1);
         }
-        else if (Type == TileType.Transport && Input.GetMouseButtonDown(1))
+        else if (Type == TileType.Transport && Input.GetMouseButtonUp(1) && _powerSystem.TotalPower > _powerSystem.RoadDestroyCost)
         {
             Type = TileType.Normal;
+            _powerSystem.AddPower(_powerSystem.RoadDestroyCost * -1);
         }
 
         _hovered = true;
@@ -71,6 +78,11 @@ public class Tile : MonoBehaviour
                 break;
 	        case TileType.City:
 	            _renderer.sprite = CitySprite;
+
+	            if (Power <= 0)
+	            {
+	                Type = TileType.Normal;
+	            }
                 break;
 	        case TileType.Generator:
 	            _renderer.sprite = GeneratorSprite;
@@ -79,8 +91,13 @@ public class Tile : MonoBehaviour
 	            {
 	                foreach (var path in _grid.ValidConnections)
 	                {
-	                    var newPower = Instantiate(PowerPrefab, transform.position, Quaternion.identity);
-	                    newPower.Path = path;
+	                    if (_powerSystem.TotalPower > _powerSystem.PowerCreateCost)
+	                    {
+	                        var newPower = Instantiate(PowerPrefab, transform.position, Quaternion.identity);
+	                        newPower.Path = path;
+
+                            _powerSystem.AddPower(-1 * _powerSystem.PowerCreateCost);
+	                    }
 	                }
 	            }
                 break;
@@ -88,7 +105,35 @@ public class Tile : MonoBehaviour
 	            throw new ArgumentOutOfRangeException();
 	    }
 
-	    var darkness = _hovered ? 1 : Mathf.Clamp(DarknessPercent, 0f, 1f);
+	    if (_powerTimer > PowerDeltaSeconds)
+	    {
+	        if (Type == TileType.City)
+	        {
+	            AddPower(-1 * _powerSystem.PowerConsumeAmount);
+	        }
+            else if (Type == TileType.Generator)
+	        {
+	            _powerSystem.AddPower(_powerSystem.PowerGenerateAmount);
+	        }
+
+	        _powerTimer = 0;
+	    }
+	    else
+	    {
+	        _powerTimer += Time.deltaTime;
+	    }
+
+	    if (Power < 0)
+	    {
+	        Power = 0;
+	    }
+
+        var darkness = _hovered ? 1 : Mathf.Clamp(DarknessPercent, 0f, 1f);
         _renderer.color = new Color(darkness, darkness, darkness);
 	}
+
+    public void AddPower(int amount)
+    {
+        Power += amount;
+    }
 }

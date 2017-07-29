@@ -9,6 +9,8 @@ public class Power : MonoBehaviour
     public List<Tile> Path;
     public float Speed;
 
+    public int CarriedPower = 10;
+
     private const float DestinationTolerance = 0.1f;
 
 	// Use this for initialization
@@ -38,13 +40,14 @@ public class Power : MonoBehaviour
 	        {
 	            transform.position = new Vector3(destination.x, destination.y, transform.position.z);
 
+	            if (Path.Count == 1)
+	            {
+	                nextTile.AddPower(CarriedPower);
+	                Destroy(gameObject);
+                }
+
 	            Path.Remove(nextTile);
 	        }
-	    }
-	    else
-	    {
-            //TODO: Transmit power
-	        Destroy(gameObject);
 	    }
 	}
 }

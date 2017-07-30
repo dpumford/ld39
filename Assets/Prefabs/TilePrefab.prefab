@@ -81,7 +81,7 @@ MonoBehaviour:
   DarknessPercent: 0.95
   NormalSprite: {fileID: 21300000, guid: 1c8483cd9ce3ba64985d91d7d9b67a31, type: 3}
   EnabledRoad: {fileID: 21300000, guid: 3e0dae4433c4025498732179cdae3c3d, type: 3}
-  DisabledRoad: {fileID: 21300000, guid: 291d1bd8fe48f33478260894581a1a2a, type: 3}
+  DisabledRoad: {fileID: 21300000, guid: adbb2befff5aa6344a22337f88b9ab12, type: 3}
   CitySprite:
   - {fileID: 21300000, guid: f00e87382f24ecd4385af4e5bea16bd2, type: 3}
   - {fileID: 21300002, guid: f00e87382f24ecd4385af4e5bea16bd2, type: 3}

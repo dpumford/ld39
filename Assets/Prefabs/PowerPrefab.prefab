@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 114523488468506924}
   - component: {fileID: 212972038442240766}
   - component: {fileID: 61238847813452618}
+  - component: {fileID: 82746793498547896}
   m_Layer: 0
   m_Name: PowerPrefab
   m_TagString: Untagged
@@ -67,6 +68,86 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!82 &82746793498547896
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1008670122546404}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!114 &114523488468506924
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -82,6 +163,8 @@ MonoBehaviour:
   RightSprite: {fileID: 21300002, guid: 2cbf85ab011d5e943a962da178ff3492, type: 3}
   UpSprite: {fileID: 21300004, guid: 2cbf85ab011d5e943a962da178ff3492, type: 3}
   DownSprite: {fileID: 21300006, guid: 2cbf85ab011d5e943a962da178ff3492, type: 3}
+  PowerCreation: {fileID: 8300000, guid: 7aa584ac34d86724ba9f54065c76b434, type: 3}
+  PowerAbsorption: {fileID: 8300000, guid: fbf59c1ffa643c84c9ddaca227abf9ac, type: 3}
   Path:
   - {fileID: 0}
   - {fileID: 0}

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts;
+using System.Collections;
 using System.Collections.Generic;
 using System.Timers;
 using UnityEngine;
@@ -10,6 +11,7 @@ public class UiController : MonoBehaviour {
     public Text SpaceDate;
     public Text[] CityPower;
     public GameObject[] Tabs;
+    public Slider[] CityPowerBars;
 
     public int SpaceDateWeekMillis = 10000;
 
@@ -17,13 +19,18 @@ public class UiController : MonoBehaviour {
     public int SpaceMonth = 3;
     public int SpaceYear = 2197;
 
+    public Grid Grid;
+
     private PowerSystem powerSystem;
     private Timer elapsedWeekTimer;
     
     private GameObject selectedTab;
+    private List<Tile> cities;
 
-	// Use this for initialization
-	void Start () {
+    private float powerBarWidth = 160;
+
+    // Use this for initialization
+    void Start () {
         powerSystem = GameObject.FindObjectOfType<PowerSystem>();
 
         elapsedWeekTimer = new System.Timers.Timer();
@@ -34,12 +41,22 @@ public class UiController : MonoBehaviour {
         {
             selectedTab = Tabs[0];
         }
+        cities = Grid.GetCities();
 	}
 	
 	// Update is called once per frame
 	void Update () {
         PowerReserves.text = powerSystem.TotalPower.ToString("N0");
         SpaceDate.text = "WEEK " + SpaceWeek + "    MONTH " + SpaceMonth + "\nYEAR " + SpaceYear;
+        int i = 0;
+        foreach (var city in cities)
+        {
+            City c = (City)city;
+            int p = c.Power;
+            CityPower[i].text = "POWER\n" + p.ToString("N0");
+            CityPowerBars[i].value = p;
+            i++;
+        }
 	}
 
     public void SelectTab(int selectedTabIndex)

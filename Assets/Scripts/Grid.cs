@@ -142,7 +142,7 @@ public class Grid : MonoBehaviour
 	{
 	    _validConnections.Clear();
 
-        var cities = Tiles.Where(t => t is City).ToList();
+        var cities = GetCities();
 	    var generators = Tiles.Where(t => t is Generator).ToList();
 
 	    foreach (var generator in generators)
@@ -164,5 +164,10 @@ public class Grid : MonoBehaviour
 	            } while (possiblePath != null);
 	        }
 	    }
+    }
+
+    public List<Tile> GetCities()
+    {
+        return Tiles.Where(t => t is City).ToList();
     }
 }

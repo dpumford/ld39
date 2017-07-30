@@ -25,6 +25,16 @@ namespace Assets.Scripts
             PowerDecreaseAmount = -(int)UnityEngine.Random.Range(5f, 10f);
         }
 
+        void OnMouseOver()
+        {
+            base.OnMouseOver();
+        }
+
+        void OnMouseExit()
+        {
+            base.OnMouseExit();
+        }
+
         void Update()
         {
             _renderer.sprite = CitySprite[CitySpriteFrame];

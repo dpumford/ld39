@@ -14,7 +14,7 @@ public class Tile : MonoBehaviour
     public Sprite[] CitySprite;
     public Sprite[] GeneratorSprite;
 
-    public AudioSource buildRoadSound;
+    public AudioClip buildRoadClip;
 
     public Power PowerPrefab;
 
@@ -23,6 +23,8 @@ public class Tile : MonoBehaviour
     protected Grid _grid;
     protected PowerSystem _powerSystem;
     protected SpriteRenderer _renderer;
+    protected AudioSource SoundPlayer;
+
     private bool _hovered;
 
 	// Use this for initialization
@@ -31,6 +33,7 @@ public class Tile : MonoBehaviour
 	    _grid = FindObjectOfType<Grid>();
 	    _powerSystem = FindObjectOfType<PowerSystem>();
 	    _renderer = GetComponent<SpriteRenderer>();
+	    SoundPlayer = GetComponent<AudioSource>();
 	}
 
     protected void OnMouseOver()
@@ -63,8 +66,9 @@ public class Tile : MonoBehaviour
 
         newScript.PowerPrefab = PowerPrefab;
 
-        var temp = Grid.Index(tiles, this);
-        tiles[temp] = newScript;
+        newScript.buildRoadClip = buildRoadClip;
+
+        tiles[Grid.Index(tiles, this)] = newScript;
 
         Destroy(this);
 

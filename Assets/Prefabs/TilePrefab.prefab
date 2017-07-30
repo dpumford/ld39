@@ -176,8 +176,6 @@ MonoBehaviour:
   - {fileID: 21300004, guid: a5b509b4740021f4b8c2ed0db6ef0246, type: 3}
   - {fileID: 21300002, guid: a5b509b4740021f4b8c2ed0db6ef0246, type: 3}
   - {fileID: 21300000, guid: a5b509b4740021f4b8c2ed0db6ef0246, type: 3}
-  buildRoadSound: {fileID: 82973402432939958, guid: ae8cb0a21c44e1e47b52b756db8641e0,
-    type: 2}
   buildRoadClip: {fileID: 8300000, guid: 2fa61f25d825c824fb2249755278383d, type: 3}
   PowerPrefab: {fileID: 114523488468506924, guid: 7124989d3ade90040a74345f17833c91,
     type: 2}

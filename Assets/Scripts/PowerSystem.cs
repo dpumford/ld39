@@ -4,6 +4,8 @@ public class PowerSystem : MonoBehaviour
 {
     public int RoadCreateCost = 5;
     public int RoadDestroyCost = 2;
+    public float RoadSpeed = 16f;
+    public int MeteorHits = 3;
 
     public int PowerGenerateAmount = 1;
     public int PowerConsumeAmount = 5;

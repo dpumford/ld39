@@ -3459,7 +3459,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.6666667, y: 1}
+  m_AnchorMax: {x: 0.33333334, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5573,7 +5573,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 3
   m_WholeNumbers: 1
-  m_Value: 2
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -6353,7 +6353,7 @@ Prefab:
     - target: {fileID: 114032072729713596, guid: 667983ec6b135f34fb6906096a1ba70d,
         type: 2}
       propertyPath: TotalPower
-      value: 100000
+      value: 80000
       objectReference: {fileID: 0}
     - target: {fileID: 61604221759689152, guid: 667983ec6b135f34fb6906096a1ba70d,
         type: 2}
@@ -6393,7 +6393,7 @@ Prefab:
     - target: {fileID: 114032072729713596, guid: 667983ec6b135f34fb6906096a1ba70d,
         type: 2}
       propertyPath: PowerGenerateAmount
-      value: 600
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 114032072729713596, guid: 667983ec6b135f34fb6906096a1ba70d,
         type: 2}

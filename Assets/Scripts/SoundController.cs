@@ -4,22 +4,25 @@ using UnityEngine;
 
 public class SoundController : MonoBehaviour {
 
-    public AudioSource clickSound;
-    public AudioSource denyClickSound;
+    public AudioClip clickSound;
+    public AudioClip denyClickSound;
+
+    private AudioSource _soundPlayer;
 
     public void PlayClickSound()
     {
-        clickSound.Play();
+        _soundPlayer.PlayOneShot(clickSound);
     }
 
     public void DenyClickSound()
     {
-        denyClickSound.Play();
+        _soundPlayer.PlayOneShot(denyClickSound);
     }
 
 	// Use this for initialization
-	void Start () {
-		
+	void Start ()
+	{
+	    _soundPlayer = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame

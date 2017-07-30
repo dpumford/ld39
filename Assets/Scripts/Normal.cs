@@ -20,7 +20,7 @@ namespace Assets.Scripts
                 _powerSystem.AddPower(_powerSystem.RoadCreateCost * -1);
 
                 ChangeType<Road>(_grid.Tiles);
-                buildRoadSound.Play();
+                SoundPlayer.PlayOneShot(buildRoadClip);
             }
 
             base.OnMouseOver();

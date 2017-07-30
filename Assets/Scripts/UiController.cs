@@ -19,6 +19,8 @@ public class UiController : MonoBehaviour {
     public int SpaceMonth = 3;
     public int SpaceYear = 2197;
 
+    public Text TransferAmount;
+
     public Grid Grid;
 
     private PowerSystem powerSystem;
@@ -81,6 +83,27 @@ public class UiController : MonoBehaviour {
         {
             SpaceMonth = 1;
             SpaceYear++;
+        }
+    }
+
+    public void SetPowerTransferUnits(Slider slider)
+    {
+        int transferAmount = (int)slider.value;
+        if (transferAmount == 0)
+        {
+            TransferAmount.text = "STANDBY";
+        }
+        else if (transferAmount == 1)
+        {
+            TransferAmount.text = "1500 JiW";
+        }
+        else if (transferAmount == 2)
+        {
+            TransferAmount.text = "3000 JiW";
+        }
+        else if (transferAmount == 3)
+        {
+            TransferAmount.text = "7000 JiW";
         }
     }
 }

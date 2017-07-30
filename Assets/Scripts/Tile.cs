@@ -16,6 +16,8 @@ public class Tile : MonoBehaviour
 
     public Power PowerPrefab;
 
+    public int CityIndex = -1;
+
     protected Grid _grid;
     protected PowerSystem _powerSystem;
     protected SpriteRenderer _renderer;

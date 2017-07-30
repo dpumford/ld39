@@ -8,11 +8,11 @@ namespace Assets.Scripts
 {
     public class City : Tile
     {
-        public int MaxPower = 100;
+        public int MaxPower = 50000;
         public int CitySpriteFrame;
 
-        public int Power = 100;
-        public float PowerDecreaseSeconds = 1;
+        public int Power = 35000;
+        public float PowerDecreaseSeconds = .001f;
         public int PowerDecreaseAmount = -1;
 
         private float _powerTimer;

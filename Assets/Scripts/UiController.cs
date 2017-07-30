@@ -22,7 +22,11 @@ public class UiController : MonoBehaviour {
     public Text TransferAmount;
 
     public Grid Grid;
+    public int Mode = 1;
 
+    public CursorGhost CursorGhost;
+
+    private Generator generator;
     private PowerSystem powerSystem;
     private Timer elapsedWeekTimer;
     
@@ -30,10 +34,12 @@ public class UiController : MonoBehaviour {
     private List<Tile> cities;
 
     private float powerBarWidth = 160;
+    private int powerSetting = 1500;
 
     // Use this for initialization
     void Start () {
         powerSystem = GameObject.FindObjectOfType<PowerSystem>();
+        generator = GameObject.FindObjectOfType<Generator>();
 
         elapsedWeekTimer = new System.Timers.Timer();
         elapsedWeekTimer.Elapsed += new ElapsedEventHandler(SpaceDateClockCalculator);
@@ -68,6 +74,7 @@ public class UiController : MonoBehaviour {
             selectedTab.SetActive(false);
             selectedTab = Tabs[selectedTabIndex];
             selectedTab.SetActive(true);
+            Mode = selectedTabIndex + 1;
         }
     }
 
@@ -92,18 +99,48 @@ public class UiController : MonoBehaviour {
         if (transferAmount == 0)
         {
             TransferAmount.text = "STANDBY";
+            powerSetting = 0;
         }
         else if (transferAmount == 1)
         {
             TransferAmount.text = "1500 JiW";
+            powerSetting = 1500;
         }
         else if (transferAmount == 2)
         {
             TransferAmount.text = "3000 JiW";
+            powerSetting = 3000;
         }
         else if (transferAmount == 3)
         {
             TransferAmount.text = "7000 JiW";
+            powerSetting = 7000;
+        }
+    }
+
+    public void StartGhostCursor()
+    {
+        CursorGhost.On = true;
+    }
+
+    public void StopGhostCursor()
+    {
+        CursorGhost.On = false;
+    }
+
+    public void SetGeneratorPower()
+    {
+        if (generator)
+        {
+            generator.SetPowerToSend(powerSetting);
+        }
+    }
+
+    public void GeneratorSendPower(int city)
+    {
+        if (generator)
+        {
+            generator.SendPower(city);
         }
     }
 }

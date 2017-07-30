@@ -17,6 +17,16 @@ namespace Assets.Scripts
 
         private float _powerTimer;
 
+        void OnMouseOver()
+        {
+            base.OnMouseOver();
+        }
+
+        void OnMouseExit()
+        {
+            base.OnMouseExit();
+        }
+
         void Update()
         {
             _renderer.sprite = CitySprite[CitySpriteFrame];

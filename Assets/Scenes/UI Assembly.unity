@@ -2296,7 +2296,7 @@ MonoBehaviour:
   - {fileID: 654074921}
   - {fileID: 1256429320}
   - {fileID: 86986813}
-  SpaceDateWeekMillis: 10000
+  SpaceDateWeekMillis: 3000
   SpaceWeek: 3
   SpaceMonth: 11
   SpaceYear: 2197
@@ -4090,11 +4090,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4605146364986654, guid: 667983ec6b135f34fb6906096a1ba70d, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 14.9
       objectReference: {fileID: 0}
     - target: {fileID: 4605146364986654, guid: 667983ec6b135f34fb6906096a1ba70d, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -14.9
       objectReference: {fileID: 0}
     - target: {fileID: 4605146364986654, guid: 667983ec6b135f34fb6906096a1ba70d, type: 2}
       propertyPath: m_LocalPosition.z

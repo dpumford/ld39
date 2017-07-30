@@ -15,7 +15,15 @@ public class Grid : MonoBehaviour
         get { return _validConnections.AsReadOnly(); }
     }
 
-private List<List<Tile>> _validConnections;
+    public int Size
+    {
+        get
+        {
+            return SquareSize(Tiles);
+        }
+    }
+
+    private List<List<Tile>> _validConnections;
 
     // Use this for initialization
 	void Start ()
@@ -77,7 +85,7 @@ private List<List<Tile>> _validConnections;
         return Math.Abs(xA - xB) + Math.Abs(yA - yB);
     }
 
-    private static int SquareSize(List<Tile> tiles)
+    public static int SquareSize(List<Tile> tiles)
     {
         return Convert.ToInt32(Math.Sqrt(tiles.Count));
     }
@@ -89,7 +97,12 @@ private List<List<Tile>> _validConnections;
             return null;
         }
 
-        return tiles[x + y * size];
+        return tiles[Index(x, y, size)];
+    }
+
+    public static int Index(int x, int y, int size)
+    {
+        return x + y * size;
     }
 
     public static int Index(List<Tile> space, Tile tile)

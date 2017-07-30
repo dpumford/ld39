@@ -61,8 +61,8 @@ public class UiController : MonoBehaviour {
         {
             City c = (City)city;
             int p = c.Power;
-            CityPower[i].text = "POWER\n" + p.ToString("N0");
-            CityPowerBars[i].value = p;
+            CityPower[c.CityIndex].text = "POWER\n" + p.ToString("N0");
+            CityPowerBars[c.CityIndex].value = p;
             i++;
         }
 	}
@@ -140,6 +140,7 @@ public class UiController : MonoBehaviour {
     {
         if (generator)
         {
+            Debug.Log("sending " + powerSetting + " to " + city);
             generator.SendPower(city);
         }
     }

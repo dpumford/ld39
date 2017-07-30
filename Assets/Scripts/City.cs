@@ -17,6 +17,14 @@ namespace Assets.Scripts
 
         private float _powerTimer;
 
+        void Start()
+        {
+            base.Start();
+            Power = (int)UnityEngine.Random.Range(20000f, 45000f);
+            PowerDecreaseSeconds = UnityEngine.Random.Range(.001f, .01f);
+            PowerDecreaseAmount = -(int)UnityEngine.Random.Range(5f, 10f);
+        }
+
         void Update()
         {
             _renderer.sprite = CitySprite[CitySpriteFrame];

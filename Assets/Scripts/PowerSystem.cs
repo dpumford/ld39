@@ -24,6 +24,5 @@ public class PowerSystem : MonoBehaviour
     public void AddPower(int amount)
     {
         TotalPower += amount;
-        Debug.Log(TotalPower);
     }
 }

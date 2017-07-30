@@ -79,16 +79,13 @@ namespace Assets.Scripts
 
         public void SendPower(int CityIndex)
         {
-            foreach (var path in _grid.ValidConnections)
+            List<Tile> cityPath = _grid.ValidConnections.First(connection => connection.ElementAt(0).CityIndex == CityIndex);
+            if (_powerSystem.TotalPower >= _powerToSend)
             {
-                List<Tile> cityPath = _grid.ValidConnections.First(connection => connection.Find(tile => tile.CityIndex == CityIndex));
-                if (_powerSystem.TotalPower >= _powerToSend)
-                {
-                    var newPower = Instantiate(PowerPrefab, transform.position, Quaternion.identity);
-                    newPower.Path = cityPath;
-                    newPower.CarriedPower = _powerToSend;
-                    _powerSystem.AddPower(-1 * _powerToSend);
-                }
+                var newPower = Instantiate(PowerPrefab, transform.position, Quaternion.identity);
+                newPower.Path = cityPath;
+                newPower.CarriedPower = _powerToSend;
+                _powerSystem.AddPower(-1 * _powerToSend);
             }
         }
     }

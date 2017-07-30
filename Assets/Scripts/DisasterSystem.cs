@@ -78,7 +78,7 @@ public class DisasterSystem : MonoBehaviour
 
             if (tile != null)
             {
-                tile.ChangeType<Normal>(_grid.Tiles);
+                tile.MeteorHit();
             }
         }
     }

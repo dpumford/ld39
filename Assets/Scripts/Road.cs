@@ -9,6 +9,8 @@ namespace Assets.Scripts
     public class Road : Tile
     {
         public bool Enabled = true;
+        public int MeteorHitsLeft = 3;
+        public int MaxMeteorHits = 3;
 
         void Start()
         {
@@ -38,6 +40,19 @@ namespace Assets.Scripts
             _renderer.sprite = Enabled ? EnabledRoad : DisabledRoad;
 
             base.Update();
+
+            var meteorDamagePercent = (MeteorHitsLeft + 1) * 1f / (MaxMeteorHits + 1);
+            _renderer.color = new Color(_renderer.color.r * meteorDamagePercent, _renderer.color.g * meteorDamagePercent, _renderer.color.b * meteorDamagePercent);
+        }
+
+        public void MeteorHit()
+        {
+            if (MeteorHitsLeft <= 0)
+            {
+                ChangeType<Normal>(_grid.Tiles);
+            }
+
+            MeteorHitsLeft--;
         }
     }
 }

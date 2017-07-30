@@ -34,7 +34,7 @@ public class Grid : MonoBehaviour
 	{
         //TODO: Generate tiles based on size
 
-        //Tiles[Random.Range(0, Tiles.Count)].ChangeType<Generator>(Tiles);
+        Tiles[Random.Range(0, Tiles.Count)].ChangeType<Generator>(Tiles);
 
         for (var c = 0; c < NumberOfGeneratedCities; c++)
         {

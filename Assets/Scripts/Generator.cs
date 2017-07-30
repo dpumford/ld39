@@ -13,6 +13,8 @@ namespace Assets.Scripts
 
         private float _powerTimer;
 
+        private int _powerToSend;
+
         private int _animationFrame;
         private float _animationTimer;
 
@@ -67,6 +69,26 @@ namespace Assets.Scripts
             else
             {
                 _powerTimer += Time.deltaTime;
+            }
+        }
+
+        public void SetPowerToSend(int PowerAmount)
+        {
+            _powerToSend = PowerAmount;
+        }
+
+        public void SendPower(int CityIndex)
+        {
+            foreach (var path in _grid.ValidConnections)
+            {
+                List<Tile> cityPath = _grid.ValidConnections.First(connection => connection.Find(tile => tile.CityIndex == CityIndex));
+                if (_powerSystem.TotalPower >= _powerToSend)
+                {
+                    var newPower = Instantiate(PowerPrefab, transform.position, Quaternion.identity);
+                    newPower.Path = cityPath;
+                    newPower.CarriedPower = _powerToSend;
+                    _powerSystem.AddPower(-1 * _powerToSend);
+                }
             }
         }
     }

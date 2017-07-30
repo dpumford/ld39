@@ -8,10 +8,12 @@ namespace Assets.Scripts
 {
     public class City : Tile
     {
+        public int MaxPower = 50000;
         public int CitySpriteFrame;
 
-        public int Power = 100;
-        public float PowerDecreaseSeconds = 10;
+        public int Power = 35000;
+        public float PowerDecreaseSeconds = .001f;
+        public int PowerDecreaseAmount = -1;
 
         private float _powerTimer;
 
@@ -26,7 +28,7 @@ namespace Assets.Scripts
 
             if (_powerTimer > PowerDecreaseSeconds)
             {
-                AddPower(-1 * _powerSystem.PowerConsumeAmount);
+                AddPower(PowerDecreaseAmount);
 
                 _powerTimer = 0;
             }
@@ -38,7 +40,10 @@ namespace Assets.Scripts
 
         public void AddPower(int amount)
         {
-            Power += amount;
+            if (Power <= MaxPower)
+            {
+                Power = Math.Min(MaxPower, Power + amount);
+            }
         }
     }
 }

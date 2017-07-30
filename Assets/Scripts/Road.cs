@@ -11,6 +11,7 @@ namespace Assets.Scripts
         public bool Enabled = true;
         public int MeteorHitsLeft = 3;
         public int MaxMeteorHits = 3;
+        public float Speed = 16f;
 
         void Start()
         {
@@ -31,6 +32,12 @@ namespace Assets.Scripts
         void OnMouseExit()
         {
             base.OnMouseExit();
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            Debug.Log("collision detected");
+            collision.gameObject.GetComponent<Power>().Speed = Speed;
         }
 
         void Update()

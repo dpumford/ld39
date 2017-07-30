@@ -19,8 +19,11 @@ namespace Assets.Scripts
             {
                 _powerSystem.AddPower(_powerSystem.RoadCreateCost * -1);
 
-                ChangeType<Road>(_grid.Tiles);
+                Road newRoad = ChangeType<Road>(_grid.Tiles);
+                newRoad.Speed = _powerSystem.RoadSpeed;
                 buildRoadSound.Play();
+                newRoad.MaxMeteorHits = _powerSystem.MeteorHits;
+                newRoad.MeteorHitsLeft = _powerSystem.MeteorHits;
             }
 
             base.OnMouseOver();

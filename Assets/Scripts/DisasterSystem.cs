@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts;
 using UnityEngine;
 
 public class DisasterSystem : MonoBehaviour
@@ -73,11 +74,11 @@ public class DisasterSystem : MonoBehaviour
             var finalTarget = target + start;
 
             //TODO: Wrap this method.
-            var tile = Grid.Get(finalTarget.X, finalTarget.Y, _grid.Tiles, gridSize);
+            var tile = Grid.Get(finalTarget.X, finalTarget.Y, _grid.Tiles, gridSize) as Road;
 
-            if (tile.Type == Tile.TileType.Transport)
+            if (tile != null)
             {
-                tile.Type = Tile.TileType.Normal;
+                tile.ChangeType<Normal>(_grid.Tiles);
             }
         }
     }

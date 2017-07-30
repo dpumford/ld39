@@ -19,9 +19,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4980959599127888}
-  - component: {fileID: 114421937103244248}
   - component: {fileID: 212307668247865794}
   - component: {fileID: 61101326119956304}
+  - component: {fileID: 114916048075634802}
   m_Layer: 0
   m_Name: TilePrefab
   m_TagString: Untagged
@@ -67,7 +67,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &114421937103244248
+--- !u!114 &114916048075634802
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -75,23 +75,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1975423373624534}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38ca71a3ebdfe7e4e93d3ba9c300366a, type: 3}
+  m_Script: {fileID: 11500000, guid: 86e46be39768c794fb9b33ec7a8c60f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Type: 0
-  Enabled: 1
-  Normal: {fileID: 21300000, guid: aa687651fe1e3dc41b5d8f9bf0918640, type: 3}
-  CitySprite: {fileID: 21300000, guid: bdf79b1db34e17346b1d2dc57993e4f0, type: 3}
-  GeneratorSprite: {fileID: 21300000, guid: e30e1e271d0a7df45b753c55b39e696f, type: 3}
+  DarknessPercent: 0.95
+  NormalSprite: {fileID: 21300000, guid: aa687651fe1e3dc41b5d8f9bf0918640, type: 3}
   EnabledRoad: {fileID: 21300000, guid: 752948d912214bf47a6d2a704168b5d2, type: 3}
   DisabledRoad: {fileID: 21300000, guid: 291d1bd8fe48f33478260894581a1a2a, type: 3}
-  DarknessPercent: 0.95
+  CitySprite: {fileID: 21300000, guid: bdf79b1db34e17346b1d2dc57993e4f0, type: 3}
+  GeneratorSprite: {fileID: 21300000, guid: e30e1e271d0a7df45b753c55b39e696f, type: 3}
   PowerPrefab: {fileID: 114523488468506924, guid: 7124989d3ade90040a74345f17833c91,
     type: 2}
-  Power: 100
-  PowerDelta: -5
-  PowerDeltaSeconds: 5
-  PowerCreateCost: 10
 --- !u!212 &212307668247865794
 SpriteRenderer:
   m_ObjectHideFlags: 1

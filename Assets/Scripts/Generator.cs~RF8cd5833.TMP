@@ -1,0 +1,29 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace Assets.Scripts
+{
+    public class Generator : Tile
+    {
+        void Update()
+        {
+            _renderer.sprite = GeneratorSprite;
+
+            if (Input.GetKeyUp(KeyCode.P))
+            {
+                foreach (var path in _grid.ValidConnections)
+                {
+                    if (_powerSystem.TotalPower > _powerSystem.PowerCreateCost)
+                    {
+                        var newPower = Instantiate(PowerPrefab, transform.position, Quaternion.identity);
+                        newPower.Path = path;
+
+                        _powerSystem.AddPower(-1 * _powerSystem.PowerCreateCost);
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: a5baf853468295e4ba7bb07e2c86053d
+timeCreated: 1501432119
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - NormalSprite: {instanceID: 0}
+  - EnabledRoad: {fileID: 21300000, guid: 752948d912214bf47a6d2a704168b5d2, type: 3}
+  - DisabledRoad: {fileID: 21300000, guid: 291d1bd8fe48f33478260894581a1a2a, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

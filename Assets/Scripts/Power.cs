@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Scripts;
 using UnityEngine;
 
 public class Power : MonoBehaviour
@@ -24,7 +25,7 @@ public class Power : MonoBehaviour
 	    {
 	        var nextTile = Path.Last();
 
-	        if (nextTile.Type == Tile.TileType.Normal)
+	        if (nextTile == null || nextTile is Normal)
 	        {
 	            Destroy(gameObject);
 	        }
@@ -42,9 +43,14 @@ public class Power : MonoBehaviour
 
 	            if (Path.Count == 1)
 	            {
-	                nextTile.AddPower(CarriedPower);
-	                Destroy(gameObject);
-                }
+	                var city = nextTile as City;
+
+	                if (city != null)
+	                {
+	                    city.AddPower(CarriedPower);
+	                    Destroy(gameObject);
+	                }
+	            }
 
 	            Path.Remove(nextTile);
 	        }

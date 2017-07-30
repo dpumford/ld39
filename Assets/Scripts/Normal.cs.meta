@@ -1,10 +1,11 @@
 fileFormatVersion: 2
-guid: 1fcfd967a902503479f867655f1faa7b
-timeCreated: 1501435755
+guid: 86e46be39768c794fb9b33ec7a8c60f0
+timeCreated: 1501432221
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - NormalSprite: {fileID: 21300000, guid: aa687651fe1e3dc41b5d8f9bf0918640, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

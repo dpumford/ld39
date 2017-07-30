@@ -97,6 +97,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a5b509b4740021f4b8c2ed0db6ef0246, type: 3}
   PowerPrefab: {fileID: 114523488468506924, guid: 7124989d3ade90040a74345f17833c91,
     type: 2}
+  CityIndex: -1
 --- !u!212 &212307668247865794
 SpriteRenderer:
   m_ObjectHideFlags: 1

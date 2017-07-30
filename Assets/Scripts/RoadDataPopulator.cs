@@ -17,9 +17,11 @@ public class RoadDataPopulator : MonoBehaviour {
     public Text RoadDescription;
     public Text StatBlock;
 
+    public PowerSystem PowerSystem;
+
 	// Use this for initialization
 	void Start () {
-		
+        PowerSystem = GameObject.FindObjectOfType<PowerSystem>();
 	}
 	
 	// Update is called once per frame
@@ -51,6 +53,12 @@ public class RoadDataPopulator : MonoBehaviour {
     {
         if (Unlocked)
         {
+            if (PowerSystem)
+            {
+                PowerSystem.RoadCreateCost = BuildCost;
+                PowerSystem.MeteorHits = RoadDurability;
+                PowerSystem.RoadSpeed = 8f * RoadSpeed;
+            }
             RoadTitle.text = Name;
             RoadDescription.text = Description;
             StatBlock.text = BuildCost + " JiW\n" 

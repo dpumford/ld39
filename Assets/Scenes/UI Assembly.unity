@@ -2321,6 +2321,7 @@ MonoBehaviour:
   RoadTitle: {fileID: 1782098544}
   RoadDescription: {fileID: 585196627}
   StatBlock: {fileID: 27767637}
+  PowerSystem: {fileID: 0}
 --- !u!1001 &386922404
 Prefab:
   m_ObjectHideFlags: 0
@@ -2696,6 +2697,7 @@ MonoBehaviour:
   RoadTitle: {fileID: 1782098544}
   RoadDescription: {fileID: 585196627}
   StatBlock: {fileID: 27767637}
+  PowerSystem: {fileID: 0}
 --- !u!114 &456611521 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114916048075634802, guid: b4b97cc3439fd714a91b01560b85c8f6,
@@ -5780,6 +5782,11 @@ Prefab:
     - target: {fileID: 4980959599127888, guid: b4b97cc3439fd714a91b01560b85c8f6, type: 2}
       propertyPath: m_LocalScale.y
       value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 61101326119956304, guid: b4b97cc3439fd714a91b01560b85c8f6,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b4b97cc3439fd714a91b01560b85c8f6, type: 2}
@@ -9885,6 +9892,7 @@ MonoBehaviour:
   RoadTitle: {fileID: 1782098544}
   RoadDescription: {fileID: 585196627}
   StatBlock: {fileID: 27767637}
+  PowerSystem: {fileID: 0}
 --- !u!1 &1735853978
 GameObject:
   m_ObjectHideFlags: 0
@@ -11952,6 +11960,7 @@ MonoBehaviour:
   RoadTitle: {fileID: 1782098544}
   RoadDescription: {fileID: 585196627}
   StatBlock: {fileID: 27767637}
+  PowerSystem: {fileID: 0}
 --- !u!1001 &2138648504
 Prefab:
   m_ObjectHideFlags: 0

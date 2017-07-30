@@ -12,7 +12,7 @@ public class Power : MonoBehaviour
 
     public int CarriedPower = 10;
 
-    private const float DestinationTolerance = 0.1f;
+    private const float DestinationTolerance = 0.2f;
 
 	// Use this for initialization
 	void Start () {
@@ -28,7 +28,11 @@ public class Power : MonoBehaviour
 	        if (nextTile == null || nextTile is Normal)
 	        {
 	            Destroy(gameObject);
-	        }
+	        } else if (nextTile is Road)
+            {
+                Road r = (Road) nextTile;
+                Speed = r.Speed;
+            }
 
 	        var destination = nextTile.transform.position;
 	        var direction = new Vector2(destination.x - transform.position.x, destination.y - transform.position.y)

@@ -66,8 +66,9 @@ public class Tile : MonoBehaviour
 
         newScript.PowerPrefab = PowerPrefab;
 
-        var temp = Grid.Index(tiles, this);
-        tiles[temp] = newScript;
+        newScript.buildRoadClip = buildRoadClip;
+
+        tiles[Grid.Index(tiles, this)] = newScript;
 
         Destroy(this);
 

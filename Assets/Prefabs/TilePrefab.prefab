@@ -79,11 +79,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DarknessPercent: 0.95
-  NormalSprite: {fileID: 21300000, guid: aa687651fe1e3dc41b5d8f9bf0918640, type: 3}
-  EnabledRoad: {fileID: 21300000, guid: 752948d912214bf47a6d2a704168b5d2, type: 3}
-  DisabledRoad: {fileID: 21300000, guid: 291d1bd8fe48f33478260894581a1a2a, type: 3}
-  CitySprite: {fileID: 21300000, guid: bdf79b1db34e17346b1d2dc57993e4f0, type: 3}
-  GeneratorSprite: {fileID: 21300000, guid: e30e1e271d0a7df45b753c55b39e696f, type: 3}
+  NormalSprite: {fileID: 21300000, guid: 1c8483cd9ce3ba64985d91d7d9b67a31, type: 3}
+  EnabledRoad: {fileID: 21300000, guid: 3e0dae4433c4025498732179cdae3c3d, type: 3}
+  DisabledRoad: {fileID: 21300000, guid: adbb2befff5aa6344a22337f88b9ab12, type: 3}
+  CitySprite:
+  - {fileID: 21300000, guid: f00e87382f24ecd4385af4e5bea16bd2, type: 3}
+  - {fileID: 21300002, guid: f00e87382f24ecd4385af4e5bea16bd2, type: 3}
+  - {fileID: 21300004, guid: f00e87382f24ecd4385af4e5bea16bd2, type: 3}
+  GeneratorSprite:
+  - {fileID: 21300000, guid: a5b509b4740021f4b8c2ed0db6ef0246, type: 3}
+  - {fileID: 21300002, guid: a5b509b4740021f4b8c2ed0db6ef0246, type: 3}
+  - {fileID: 21300004, guid: a5b509b4740021f4b8c2ed0db6ef0246, type: 3}
+  - {fileID: 21300006, guid: a5b509b4740021f4b8c2ed0db6ef0246, type: 3}
+  - {fileID: 21300006, guid: a5b509b4740021f4b8c2ed0db6ef0246, type: 3}
+  - {fileID: 21300004, guid: a5b509b4740021f4b8c2ed0db6ef0246, type: 3}
+  - {fileID: 21300002, guid: a5b509b4740021f4b8c2ed0db6ef0246, type: 3}
+  - {fileID: 21300000, guid: a5b509b4740021f4b8c2ed0db6ef0246, type: 3}
   PowerPrefab: {fileID: 114523488468506924, guid: 7124989d3ade90040a74345f17833c91,
     type: 2}
 --- !u!212 &212307668247865794

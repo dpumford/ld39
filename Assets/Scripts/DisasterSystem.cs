@@ -23,10 +23,14 @@ public class DisasterSystem : MonoBehaviour
         }
     }
 
-    public float MeteorShowerSeconds = 60;
+    public float MeteorShowerSeconds = 3;
+    public float IndividualMeteorSeconds = 0.5f;
 
     private Grid _grid;
     private float _meteorShowerTimer;
+
+    private List<Target> _meteorsToDrop;
+    private float _individualMeteorTimer;
 
 	// Use this for initialization
 	void Start ()
@@ -39,9 +43,28 @@ public class DisasterSystem : MonoBehaviour
 	{
 	    if (_meteorShowerTimer > MeteorShowerSeconds)
 	    {
-	        DropMeteors();
+	        if (_meteorsToDrop == null)
+	        {
+	            _meteorsToDrop = PickTargets();
+	        }
 
-	        _meteorShowerTimer = 0;
+	        if (_meteorsToDrop.Count > 0)
+	        {
+	            if (_individualMeteorTimer > IndividualMeteorSeconds)
+	            {
+	                DropMeteor();
+	                _individualMeteorTimer = 0;
+	            }
+	            else
+	            {
+	                _individualMeteorTimer += Time.deltaTime;
+	            }
+	        }
+	        else
+	        {
+	            _meteorsToDrop = null;
+	            _meteorShowerTimer = 0;
+	        }
 	    }
 	    else
 	    {
@@ -49,11 +72,13 @@ public class DisasterSystem : MonoBehaviour
 	    }
 	}
 
-    private void DropMeteors()
+    private List<Target> PickTargets()
     {
         var targets = new List<Target>(NumberOfMeteors);
         var constrainedDiameter = ConstrainedMeteorShowerDiameter;
         var gridSize = _grid.Size;
+
+        Target start = new Target(Random.Range(0, gridSize - constrainedDiameter), Random.Range(0, gridSize - constrainedDiameter));
 
         for (var t = 0; t < NumberOfMeteors; t++)
         {
@@ -64,23 +89,25 @@ public class DisasterSystem : MonoBehaviour
                 newTarget = new Target(Random.Range(0, constrainedDiameter), Random.Range(0, constrainedDiameter));
             } while (targets.Any(target => target.Equals(newTarget)));
 
-            targets.Add(newTarget);
+            targets.Add(newTarget + start);
         }
 
-        Target start = new Target(Random.Range(0, gridSize - constrainedDiameter), Random.Range(0, gridSize - constrainedDiameter));
+        return targets;
+    }
 
-        foreach (var target in targets)
+    private void DropMeteor()
+    {
+        var finalTarget = _meteorsToDrop.First();
+
+        //TODO: Wrap this method.
+        var tile = Grid.Get(finalTarget.X, finalTarget.Y, _grid.Tiles, _grid.Size) as Road;
+
+        if (tile != null)
         {
-            var finalTarget = target + start;
-
-            //TODO: Wrap this method.
-            var tile = Grid.Get(finalTarget.X, finalTarget.Y, _grid.Tiles, gridSize) as Road;
-
-            if (tile != null)
-            {
-                tile.ChangeType<Normal>(_grid.Tiles);
-            }
+            tile.MeteorHit();
         }
+
+        _meteorsToDrop.Remove(finalTarget);
     }
 
     private class Target

@@ -15,6 +15,8 @@ public class Grid : MonoBehaviour
 
     public int NumberOfGeneratedCities = 3;
 
+    public UiController UiController;
+
     public ReadOnlyCollection<List<Tile>> ValidConnections {
         get { return _validConnections.AsReadOnly(); }
     }
@@ -39,13 +41,17 @@ public class Grid : MonoBehaviour
         for (var c = 0; c < NumberOfGeneratedCities; c++)
         {
             Tile tile;
+            List<Tile> neighbors;
 
             do
             {
                 tile = Tiles[Random.Range(0, Tiles.Count)];
-            } while (tile is City || tile is Generator);
+                neighbors = Grid.GetNeighbors(Tiles, tile);
+            } while (tile is City || tile is Generator || neighbors.Any(t => t is City || t is Generator));
 
-            tile.ChangeType<City>(Tiles);
+            var newCity = tile.ChangeType<City>(Tiles);
+            newCity.CityIndex = c;
+            newCity.CitySpriteFrame = c % newCity.CitySprite.Length;
         }
 
         _validConnections = new List<List<Tile>>();
@@ -142,7 +148,7 @@ public class Grid : MonoBehaviour
 	{
 	    _validConnections.Clear();
 
-        var cities = Tiles.Where(t => t is City).ToList();
+        var cities = GetCities();
 	    var generators = Tiles.Where(t => t is Generator).ToList();
 
 	    foreach (var generator in generators)
@@ -165,4 +171,24 @@ public class Grid : MonoBehaviour
 	        }
 	    }
     }
+
+    public List<Tile> GetCities()
+    {
+        return Tiles.Where(t => t is City).ToList();
+    }
+
+    /*
+    public void OnMouseEnter()
+    {
+        Debug.Log("Mouse entered, UI controller in " + UiController.Mode);
+        if (UiController.Mode == 1)
+        {
+            UiController.StartGhostCursor();
+        }
+    }
+
+    public void OnMouseExit()
+    {
+        UiController.StopGhostCursor();
+    }*/
 }

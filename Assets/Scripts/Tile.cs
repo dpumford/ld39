@@ -11,10 +11,12 @@ public class Tile : MonoBehaviour
     public Sprite NormalSprite;
     public Sprite EnabledRoad;
     public Sprite DisabledRoad;
-    public Sprite CitySprite;
-    public Sprite GeneratorSprite;
+    public Sprite[] CitySprite;
+    public Sprite[] GeneratorSprite;
 
     public Power PowerPrefab;
+
+    public int CityIndex = -1;
 
     protected Grid _grid;
     protected PowerSystem _powerSystem;

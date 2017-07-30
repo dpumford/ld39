@@ -21,6 +21,7 @@ namespace Assets.Scripts
 
                 Road newRoad = ChangeType<Road>(_grid.Tiles);
                 newRoad.Speed = _powerSystem.RoadSpeed;
+                buildRoadSound.Play();
                 newRoad.MaxMeteorHits = _powerSystem.MeteorHits;
                 newRoad.MeteorHitsLeft = _powerSystem.MeteorHits;
             }

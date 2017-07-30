@@ -14,6 +14,8 @@ public class Tile : MonoBehaviour
     public Sprite[] CitySprite;
     public Sprite[] GeneratorSprite;
 
+    public AudioSource buildRoadSound;
+
     public Power PowerPrefab;
 
     public int CityIndex = -1;

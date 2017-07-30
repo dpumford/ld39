@@ -39,13 +39,16 @@ public class Grid : MonoBehaviour
         for (var c = 0; c < NumberOfGeneratedCities; c++)
         {
             Tile tile;
+            List<Tile> neighbors;
 
             do
             {
                 tile = Tiles[Random.Range(0, Tiles.Count)];
-            } while (tile is City || tile is Generator);
+                neighbors = Grid.GetNeighbors(Tiles, tile);
+            } while (tile is City || tile is Generator || neighbors.Any(t => t is City || t is Generator));
 
-            tile.ChangeType<City>(Tiles);
+            var newCity = tile.ChangeType<City>(Tiles);
+            newCity.CitySpriteFrame = c % newCity.CitySprite.Length;
         }
 
         _validConnections = new List<List<Tile>>();

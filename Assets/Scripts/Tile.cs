@@ -11,7 +11,7 @@ public class Tile : MonoBehaviour
     public Sprite NormalSprite;
     public Sprite EnabledRoad;
     public Sprite DisabledRoad;
-    public Sprite CitySprite;
+    public Sprite[] CitySprite;
     public Sprite GeneratorSprite;
 
     public Power PowerPrefab;

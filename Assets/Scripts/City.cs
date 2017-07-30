@@ -9,6 +9,8 @@ namespace Assets.Scripts
     public class City : Tile
     {
         public int MaxPower = 100;
+        public int CitySpriteFrame;
+
         public int Power = 100;
         public float PowerDecreaseSeconds = 1;
         public int PowerDecreaseAmount = -1;
@@ -17,7 +19,7 @@ namespace Assets.Scripts
 
         void Update()
         {
-            _renderer.sprite = CitySprite;
+            _renderer.sprite = CitySprite[CitySpriteFrame];
 
             if (Power <= 0)
             {

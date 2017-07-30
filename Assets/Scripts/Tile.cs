@@ -14,7 +14,7 @@ public class Tile : MonoBehaviour
     public Sprite[] CitySprite;
     public Sprite[] GeneratorSprite;
 
-    public static AudioSource buildRoadSound;
+    public AudioSource buildRoadSound;
 
     public Power PowerPrefab;
 

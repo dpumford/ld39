@@ -19,6 +19,8 @@ public class UiController : MonoBehaviour {
     public int SpaceMonth = 3;
     public int SpaceYear = 2197;
 
+    public Image MeteorAlert;
+
     public Text TransferAmount;
 
     public Grid Grid;
@@ -50,6 +52,7 @@ public class UiController : MonoBehaviour {
             selectedTab = Tabs[0];
         }
         cities = Grid.GetCities();
+        MeteorAlert.color = new Color(MeteorAlert.color.r, MeteorAlert.color.g, MeteorAlert.color.b, .4f);
 	}
 	
 	// Update is called once per frame

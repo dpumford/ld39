@@ -7,6 +7,11 @@ using UnityEngine;
 
 public class Power : MonoBehaviour
 {
+    public Sprite LeftSprite;
+    public Sprite RightSprite;
+    public Sprite UpSprite;
+    public Sprite DownSprite;
+
     public List<Tile> Path;
     public float Speed;
 
@@ -14,9 +19,12 @@ public class Power : MonoBehaviour
 
     private const float DestinationTolerance = 0.1f;
 
+    private SpriteRenderer _renderer;
+
 	// Use this for initialization
-	void Start () {
-		
+	void Start ()
+	{
+	    _renderer = GetComponent<SpriteRenderer>();
 	}
 	
 	// Update is called once per frame
@@ -33,8 +41,26 @@ public class Power : MonoBehaviour
 	        var destination = nextTile.transform.position;
 	        var direction = new Vector2(destination.x - transform.position.x, destination.y - transform.position.y)
 	            .normalized;
+	        var directionRadians = Mathf.Atan2(direction.y, direction.x);
 
-	        transform.Translate(direction * Speed * Time.deltaTime);
+	        if (directionRadians >= 0 && directionRadians < Mathf.PI / 2f)
+	        {
+	            _renderer.sprite = RightSprite;
+	        }
+            else if (directionRadians >= Mathf.PI / 2f && directionRadians < Mathf.PI)
+	        {
+	            _renderer.sprite = UpSprite;
+	        }
+	        else if (directionRadians >= Mathf.PI && directionRadians < Mathf.PI * 3f / 2f)
+	        {
+	            _renderer.sprite = LeftSprite;
+	        }
+	        else
+	        {
+	            _renderer.sprite = DownSprite;
+	        }
+
+            transform.Translate(direction * Speed * Time.deltaTime);
 
 	        if (Math.Abs(destination.x - transform.position.x) < DestinationTolerance &&
 	            Math.Abs(destination.y - transform.position.y) < DestinationTolerance)

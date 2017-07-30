@@ -47,7 +47,8 @@ public class Grid : MonoBehaviour
                 neighbors = Grid.GetNeighbors(Tiles, tile);
             } while (tile is City || tile is Generator || neighbors.Any(t => t is City || t is Generator));
 
-            tile.ChangeType<City>(Tiles);
+            var newCity = tile.ChangeType<City>(Tiles);
+            newCity.CitySpriteFrame = c % newCity.CitySprite.Length;
         }
 
         _validConnections = new List<List<Tile>>();

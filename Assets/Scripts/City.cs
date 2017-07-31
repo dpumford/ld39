@@ -21,8 +21,8 @@ namespace Assets.Scripts
         {
             base.Start();
             Power = (int)UnityEngine.Random.Range(20000f, 45000f);
-            PowerDecreaseSeconds = UnityEngine.Random.Range(.001f, .01f);
-            PowerDecreaseAmount = -(int)UnityEngine.Random.Range(5f, 10f);
+            PowerDecreaseSeconds = UnityEngine.Random.Range(.01f, .1f);
+            PowerDecreaseAmount = -UnityEngine.Random.Range(5, 10);
         }
 
         void OnMouseOver()

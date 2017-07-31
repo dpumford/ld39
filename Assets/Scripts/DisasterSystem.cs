@@ -24,6 +24,7 @@ public class DisasterSystem : MonoBehaviour
     }
 
     public float MeteorShowerSeconds = 3;
+    public float MeteorShowerPredictionPercent = 0.5f;
     public float IndividualMeteorSeconds = 0.5f;
 
     private Grid _grid;
@@ -41,13 +42,16 @@ public class DisasterSystem : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-	    if (_meteorShowerTimer > MeteorShowerSeconds)
+	    if (_meteorShowerTimer > MeteorShowerSeconds * MeteorShowerPredictionPercent)
 	    {
 	        if (_meteorsToDrop == null)
 	        {
 	            _meteorsToDrop = PickTargets();
 	        }
+        }
 
+        if (_meteorShowerTimer > MeteorShowerSeconds)
+	    {
 	        if (_meteorsToDrop.Count > 0)
 	        {
 	            if (_individualMeteorTimer > IndividualMeteorSeconds)

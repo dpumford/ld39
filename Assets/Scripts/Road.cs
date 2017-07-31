@@ -9,8 +9,8 @@ namespace Assets.Scripts
     public class Road : Tile
     {
         public bool Enabled = true;
-        public int MeteorHitsLeft = 3;
-        public int MaxMeteorHits = 3;
+        public int MeteorHitsLeft = 1;
+        public int MaxMeteorHits = 2;
         public float Speed = 16f;
 
         void Start()

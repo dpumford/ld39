@@ -82,6 +82,9 @@ MonoBehaviour:
   NumberOfMeteors: 3
   MeteorShowerDiameter: 3
   MeteorShowerSeconds: 5
+  MeteorShowerPredictionPercent: 0.5
+  IndividualMeteorSeconds: 0.5
+  ImpendingMeteorPrefab: {fileID: 0}
 --- !u!114 &114032072729713596
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -95,6 +98,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RoadCreateCost: 5
   RoadDestroyCost: 2
+  RoadSpeed: 16
+  MeteorHits: 2
+  FallenMeteorPower: 1000
   PowerGenerateAmount: 1
   PowerConsumeAmount: 5
   PowerCreateCost: 5
@@ -127,3 +133,5 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  NumberOfGeneratedCities: 3
+  UiController: {fileID: 0}

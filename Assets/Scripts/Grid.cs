@@ -81,7 +81,7 @@ public class Grid : MonoBehaviour
                     var neighbor = Get(tileX + dX, tileY + dY, tiles, size);
 
                     //TODO: Allow other types, too
-                    if (neighbor != null && !(neighbor is Normal))
+                    if (neighbor != null && !(neighbor is Normal) && !(neighbor is FallenMeteor))
                     {
                         neighbors.Add(neighbor);
                     }

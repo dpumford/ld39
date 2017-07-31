@@ -41,6 +41,8 @@ namespace Assets.Scripts
         {
             _renderer.sprite = CitySprite[CitySpriteFrame];
 
+            base.Update();
+
             if (Power <= 0)
             {
                 ChangeType<Normal>(_grid.Tiles);

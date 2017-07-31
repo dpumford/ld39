@@ -52,7 +52,7 @@ public class DisasterSystem : MonoBehaviour
 	        {
 	            var target = Grid.Get(meteorsToDrop[m].X, meteorsToDrop[m].Y, _grid.Tiles, _grid.Size);
 
-	            var impendingMeteor = Instantiate(ImpendingMeteorPrefab, new Vector3(target.transform.position.x, target.transform.position.y), Quaternion.identity);
+	            var impendingMeteor = Instantiate(ImpendingMeteorPrefab, new Vector3(target.transform.position.x, target.transform.position.y, -1), Quaternion.identity);
 	            impendingMeteor.SecondsToImpact = (MeteorShowerSeconds - MeteorShowerSeconds * MeteorShowerPredictionPercent) + IndividualMeteorSeconds * m;
 	            impendingMeteor.Target = target;
 

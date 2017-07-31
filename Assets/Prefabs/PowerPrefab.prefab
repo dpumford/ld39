@@ -165,6 +165,7 @@ MonoBehaviour:
   DownSprite: {fileID: 21300006, guid: 2cbf85ab011d5e943a962da178ff3492, type: 3}
   PowerCreation: {fileID: 8300000, guid: 7aa584ac34d86724ba9f54065c76b434, type: 3}
   PowerAbsorption: {fileID: 8300000, guid: fbf59c1ffa643c84c9ddaca227abf9ac, type: 3}
+  PowerDestroy: {fileID: 8300000, guid: bb66ddde41f834042b0bc4ad38f2a610, type: 3}
   Path:
   - {fileID: 0}
   - {fileID: 0}

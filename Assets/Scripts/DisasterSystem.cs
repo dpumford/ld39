@@ -104,7 +104,7 @@ public class DisasterSystem : MonoBehaviour
         var finalTarget = _meteorsToDrop.First();
 
         //TODO: Wrap this method.
-        var tile = Grid.Get(finalTarget.X, finalTarget.Y, _grid.Tiles, _grid.Size) as Road;
+        var tile = Grid.Get(finalTarget.X, finalTarget.Y, _grid.Tiles, _grid.Size);
 
         if (tile != null)
         {

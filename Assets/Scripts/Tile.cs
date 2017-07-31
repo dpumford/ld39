@@ -15,6 +15,7 @@ public class Tile : MonoBehaviour
     public Sprite[] GeneratorSprite;
 
     public AudioClip buildRoadClip;
+    public AudioClip destroyRoadClip;
     public AudioClip meteorImpact;
 
     public Power PowerPrefab;
@@ -68,6 +69,7 @@ public class Tile : MonoBehaviour
         newScript.PowerPrefab = PowerPrefab;
 
         newScript.buildRoadClip = buildRoadClip;
+        newScript.destroyRoadClip = destroyRoadClip;
         newScript.meteorImpact = meteorImpact;
 
         tiles[Grid.Index(tiles, this)] = newScript;
@@ -75,5 +77,10 @@ public class Tile : MonoBehaviour
         Destroy(this);
 
         return newScript;
+    }
+
+    public virtual void MeteorHit()
+    {
+        SoundPlayer.PlayOneShot(meteorImpact);
     }
 }

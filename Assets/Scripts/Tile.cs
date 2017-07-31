@@ -13,8 +13,11 @@ public class Tile : MonoBehaviour
     public Sprite DisabledRoad;
     public Sprite[] CitySprite;
     public Sprite[] GeneratorSprite;
+    public Sprite FallenMeteorSprite;
 
     public AudioClip buildRoadClip;
+    public AudioClip destroyRoadClip;
+    public AudioClip meteorImpact;
 
     public Power PowerPrefab;
 
@@ -47,7 +50,7 @@ public class Tile : MonoBehaviour
     }
 
     // Update is called once per frame
-    protected void Update ()
+    protected void Update()
 	{
         var darkness = _hovered ? 1 : Mathf.Clamp(DarknessPercent, 0f, 1f);
         _renderer.color = new Color(darkness, darkness, darkness);
@@ -63,15 +66,23 @@ public class Tile : MonoBehaviour
         newScript.DisabledRoad = DisabledRoad;
         newScript.CitySprite = CitySprite;
         newScript.GeneratorSprite = GeneratorSprite;
+        newScript.FallenMeteorSprite = FallenMeteorSprite;
 
         newScript.PowerPrefab = PowerPrefab;
 
         newScript.buildRoadClip = buildRoadClip;
+        newScript.destroyRoadClip = destroyRoadClip;
+        newScript.meteorImpact = meteorImpact;
 
         tiles[Grid.Index(tiles, this)] = newScript;
 
         Destroy(this);
 
         return newScript;
+    }
+
+    public virtual void MeteorHit()
+    {
+        SoundPlayer.PlayOneShot(meteorImpact);
     }
 }

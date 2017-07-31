@@ -7,6 +7,8 @@ public class PowerSystem : MonoBehaviour
     public float RoadSpeed = 16f;
     public int MeteorHits = 3;
 
+    public int FallenMeteorPower = 1000;
+
     public int PowerGenerateAmount = 1;
     public int PowerConsumeAmount = 5;
 

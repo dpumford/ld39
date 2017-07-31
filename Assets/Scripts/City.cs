@@ -15,14 +15,16 @@ namespace Assets.Scripts
         public float PowerDecreaseSeconds = .001f;
         public int PowerDecreaseAmount = -1;
 
+        public int MeteorPowerDamage = 10000;
+
         private float _powerTimer;
 
         void Start()
         {
             base.Start();
             Power = (int)UnityEngine.Random.Range(20000f, 45000f);
-            PowerDecreaseSeconds = UnityEngine.Random.Range(.001f, .01f);
-            PowerDecreaseAmount = -(int)UnityEngine.Random.Range(5f, 10f);
+            PowerDecreaseSeconds = UnityEngine.Random.Range(.01f, .1f);
+            PowerDecreaseAmount = -UnityEngine.Random.Range(30, 50);
         }
 
         void OnMouseOver()
@@ -39,6 +41,8 @@ namespace Assets.Scripts
         {
             _renderer.sprite = CitySprite[CitySpriteFrame];
 
+            base.Update();
+
             if (Power <= 0)
             {
                 ChangeType<Normal>(_grid.Tiles);
@@ -54,6 +58,13 @@ namespace Assets.Scripts
             {
                 _powerTimer += Time.deltaTime;
             }
+        }
+
+        public override void MeteorHit()
+        {
+            base.MeteorHit();
+
+            AddPower(-MeteorPowerDamage);
         }
 
         public void AddPower(int amount)

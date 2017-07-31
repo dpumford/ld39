@@ -9,8 +9,8 @@ namespace Assets.Scripts
     public class Road : Tile
     {
         public bool Enabled = true;
-        public int MeteorHitsLeft = 3;
-        public int MaxMeteorHits = 3;
+        public int MeteorHitsLeft = 1;
+        public int MaxMeteorHits = 2;
         public float Speed = 16f;
 
         void Start()
@@ -24,6 +24,8 @@ namespace Assets.Scripts
             {
                 _powerSystem.AddPower(_powerSystem.RoadDestroyCost * -1);
                 ChangeType<Normal>(_grid.Tiles);
+
+                SoundPlayer.PlayOneShot(destroyRoadClip);
             }
 
             base.OnMouseOver();
@@ -52,8 +54,10 @@ namespace Assets.Scripts
             _renderer.color = new Color(_renderer.color.r * meteorDamagePercent, _renderer.color.g * meteorDamagePercent, _renderer.color.b * meteorDamagePercent);
         }
 
-        public void MeteorHit()
+        public override void MeteorHit()
         {
+            base.MeteorHit();
+
             if (MeteorHitsLeft <= 0)
             {
                 ChangeType<Normal>(_grid.Tiles);

@@ -12,6 +12,9 @@ public class Power : MonoBehaviour
     public Sprite UpSprite;
     public Sprite DownSprite;
 
+    public AudioClip PowerCreation;
+    public AudioClip PowerAbsorption;
+
     public List<Tile> Path;
     public float Speed;
 
@@ -21,10 +24,15 @@ public class Power : MonoBehaviour
 
     private SpriteRenderer _renderer;
 
+    private AudioSource SoundPlayer;
+
 	// Use this for initialization
 	void Start ()
 	{
 	    _renderer = GetComponent<SpriteRenderer>();
+        SoundPlayer = GetComponent<AudioSource>();
+
+        SoundPlayer.PlayOneShot(PowerCreation);
 	}
 	
 	// Update is called once per frame
@@ -78,8 +86,10 @@ public class Power : MonoBehaviour
 	                if (city != null)
 	                {
 	                    city.AddPower(CarriedPower);
-	                    Destroy(gameObject);
-	                }
+                        SoundPlayer.PlayOneShot(PowerAbsorption);
+                        _renderer.enabled = false;
+	                    Destroy(gameObject, PowerAbsorption.length);
+                    }
 	            }
 
 	            Path.Remove(nextTile);

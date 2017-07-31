@@ -15,6 +15,7 @@ public class Tile : MonoBehaviour
     public Sprite[] GeneratorSprite;
 
     public AudioClip buildRoadClip;
+    public AudioClip meteorImpact;
 
     public Power PowerPrefab;
 
@@ -67,6 +68,7 @@ public class Tile : MonoBehaviour
         newScript.PowerPrefab = PowerPrefab;
 
         newScript.buildRoadClip = buildRoadClip;
+        newScript.meteorImpact = meteorImpact;
 
         tiles[Grid.Index(tiles, this)] = newScript;
 

@@ -54,6 +54,7 @@ namespace Assets.Scripts
 
         public void MeteorHit()
         {
+            SoundPlayer.PlayOneShot(meteorImpact);
             if (MeteorHitsLeft <= 0)
             {
                 ChangeType<Normal>(_grid.Tiles);

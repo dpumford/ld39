@@ -27,48 +27,42 @@ public class DisasterSystem : MonoBehaviour
     public float MeteorShowerPredictionPercent = 0.5f;
     public float IndividualMeteorSeconds = 0.5f;
 
+    public ImpendingMeteor ImpendingMeteorPrefab;
+
     private Grid _grid;
     private float _meteorShowerTimer;
 
-    private List<Target> _meteorsToDrop;
-    private float _individualMeteorTimer;
+    private List<ImpendingMeteor> _impendingMeteors;
 
 	// Use this for initialization
 	void Start ()
 	{
 	    _grid = GetComponent<Grid>();
+        _impendingMeteors = new List<ImpendingMeteor>();
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-	    if (_meteorShowerTimer > MeteorShowerSeconds * MeteorShowerPredictionPercent)
+	    if (_meteorShowerTimer > MeteorShowerSeconds * MeteorShowerPredictionPercent && !_impendingMeteors.Any())
 	    {
-	        if (_meteorsToDrop == null)
+	        var meteorsToDrop = PickTargets();
+
+	        for (var m = 0; m < meteorsToDrop.Count; m++)
 	        {
-	            _meteorsToDrop = PickTargets();
+	            var target = Grid.Get(meteorsToDrop[m].X, meteorsToDrop[m].Y, _grid.Tiles, _grid.Size);
+
+	            var impendingMeteor = Instantiate(ImpendingMeteorPrefab, new Vector3(target.transform.position.x, target.transform.position.y), Quaternion.identity);
+	            impendingMeteor.SecondsToImpact = (MeteorShowerSeconds - MeteorShowerSeconds * MeteorShowerPredictionPercent) + IndividualMeteorSeconds * m;
+	            impendingMeteor.Target = target;
+
+	            _impendingMeteors.Add(impendingMeteor);
 	        }
         }
-
-        if (_meteorShowerTimer > MeteorShowerSeconds)
+        else if (_meteorShowerTimer > MeteorShowerSeconds)
 	    {
-	        if (_meteorsToDrop.Count > 0)
-	        {
-	            if (_individualMeteorTimer > IndividualMeteorSeconds)
-	            {
-	                DropMeteor();
-	                _individualMeteorTimer = 0;
-	            }
-	            else
-	            {
-	                _individualMeteorTimer += Time.deltaTime;
-	            }
-	        }
-	        else
-	        {
-	            _meteorsToDrop = null;
-	            _meteorShowerTimer = 0;
-	        }
+            _impendingMeteors.Clear();
+	        _meteorShowerTimer = 0;
 	    }
 	    else
 	    {
@@ -90,28 +84,13 @@ public class DisasterSystem : MonoBehaviour
 
             do
             {
-                newTarget = new Target(Random.Range(0, constrainedDiameter), Random.Range(0, constrainedDiameter));
+                newTarget = new Target(Random.Range(0, constrainedDiameter), Random.Range(0, constrainedDiameter)) + start;
             } while (targets.Any(target => target.Equals(newTarget)));
 
-            targets.Add(newTarget + start);
+            targets.Add(newTarget);
         }
 
         return targets;
-    }
-
-    private void DropMeteor()
-    {
-        var finalTarget = _meteorsToDrop.First();
-
-        //TODO: Wrap this method.
-        var tile = Grid.Get(finalTarget.X, finalTarget.Y, _grid.Tiles, _grid.Size);
-
-        if (tile != null)
-        {
-            tile.MeteorHit();
-        }
-
-        _meteorsToDrop.Remove(finalTarget);
     }
 
     private class Target

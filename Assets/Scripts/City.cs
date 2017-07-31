@@ -15,6 +15,8 @@ namespace Assets.Scripts
         public float PowerDecreaseSeconds = .001f;
         public int PowerDecreaseAmount = -1;
 
+        public int MeteorPowerDamage = 10000;
+
         private float _powerTimer;
 
         void Start()
@@ -54,6 +56,13 @@ namespace Assets.Scripts
             {
                 _powerTimer += Time.deltaTime;
             }
+        }
+
+        public override void MeteorHit()
+        {
+            base.MeteorHit();
+
+            AddPower(-MeteorPowerDamage);
         }
 
         public void AddPower(int amount)

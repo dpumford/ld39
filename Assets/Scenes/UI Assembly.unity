@@ -6691,6 +6691,12 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114022648256449396, guid: 667983ec6b135f34fb6906096a1ba70d,
+        type: 2}
+      propertyPath: ImpendingMeteorPrefab
+      value: 
+      objectReference: {fileID: 114756392709339308, guid: b5ff746117d9ee744809f692d8b7d620,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 667983ec6b135f34fb6906096a1ba70d, type: 2}
   m_IsPrefabParent: 0

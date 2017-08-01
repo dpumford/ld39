@@ -18,9 +18,11 @@ namespace Assets.Scripts
         private float _impactTimer;
         private float _impendingMeteorAnimationTimer;
         private SpriteRenderer _renderer;
+        private UiController _uiController;
 
         void Start()
         {
+            _uiController = GameObject.FindObjectOfType<UiController>();
             _renderer = GetComponent<SpriteRenderer>();
         }
 
@@ -41,6 +43,7 @@ namespace Assets.Scripts
 
             if (_impactTimer > SecondsToImpact)
             {
+                _uiController.DecrementLiveMeteors();
                 Target.MeteorHit();
                 Destroy(gameObject);
             }

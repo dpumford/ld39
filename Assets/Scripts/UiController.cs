@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Timers;
@@ -19,6 +20,8 @@ public class UiController : MonoBehaviour {
     public int SpaceMonth = 3;
     public int SpaceYear = 2197;
 
+    public Image MeteorAlert;
+
     public Text TransferAmount;
 
     public Grid Grid;
@@ -36,6 +39,11 @@ public class UiController : MonoBehaviour {
     private float powerBarWidth = 160;
     private int powerSetting = 1500;
 
+    private float pulseDuration = .5f;
+    private float meteorAlphaModifier = 0f;
+    private bool disasterMode = false;
+    private int liveMeteors = 0;
+
     // Use this for initialization
     void Start () {
         powerSystem = GameObject.FindObjectOfType<PowerSystem>();
@@ -52,7 +60,7 @@ public class UiController : MonoBehaviour {
         }
 
         cities = Grid.GetCities();
-
+        MeteorAlert.color = new Color(MeteorAlert.color.r, MeteorAlert.color.g, MeteorAlert.color.b, .4f);
         SetGeneratorPower();
 	}
 	
@@ -68,6 +76,40 @@ public class UiController : MonoBehaviour {
             CityPower[c.CityIndex].text = "POWER\n" + p.ToString("N0");
             CityPowerBars[c.CityIndex].value = p;
             i++;
+        }
+        if (liveMeteors > 0 || meteorAlphaModifier > 0)
+        {
+            if (pulseDuration == .5)
+            {
+                if (meteorAlphaModifier < pulseDuration)
+                {
+                    meteorAlphaModifier = (meteorAlphaModifier + Time.deltaTime);
+                }
+                else
+                {
+                    pulseDuration = 0;
+                }
+            }
+            else if (pulseDuration == 0)
+            {
+                if (meteorAlphaModifier > pulseDuration)
+                {
+                    meteorAlphaModifier = (meteorAlphaModifier - Time.deltaTime);
+                }
+                else
+                {
+                    pulseDuration = .5f;
+                }
+            }
+            meteorAlphaModifier = Math.Max(0, meteorAlphaModifier);
+            meteorAlphaModifier = Math.Min(.5f, meteorAlphaModifier);
+            float newAlpha = Math.Min((meteorAlphaModifier / .5f) + .4f, 1.0f);
+            MeteorAlert.color = new Color(MeteorAlert.color.r, MeteorAlert.color.g, MeteorAlert.color.b, newAlpha);
+        }
+        else
+        {
+            meteorAlphaModifier = 0;
+            MeteorAlert.color = new Color(MeteorAlert.color.r, MeteorAlert.color.g, MeteorAlert.color.b, .4f);
         }
 	}
 
@@ -147,5 +189,15 @@ public class UiController : MonoBehaviour {
             Debug.Log("sending " + powerSetting + " to " + city);
             generator.SendPower(city);
         }
+    }
+
+    public void SetLiveMeteors(int m)
+    {
+        liveMeteors = m;
+    }
+
+    public void DecrementLiveMeteors()
+    {
+        liveMeteors--;
     }
 }

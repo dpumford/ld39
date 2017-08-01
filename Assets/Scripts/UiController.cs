@@ -53,12 +53,15 @@ public class UiController : MonoBehaviour {
         elapsedWeekTimer.Elapsed += new ElapsedEventHandler(SpaceDateClockCalculator);
         elapsedWeekTimer.Interval = SpaceDateWeekMillis;
         elapsedWeekTimer.Enabled = true;
+
         if (Tabs.Length > 0)
         {
             selectedTab = Tabs[0];
         }
+
         cities = Grid.GetCities();
         MeteorAlert.color = new Color(MeteorAlert.color.r, MeteorAlert.color.g, MeteorAlert.color.b, .4f);
+        SetGeneratorPower();
 	}
 	
 	// Update is called once per frame

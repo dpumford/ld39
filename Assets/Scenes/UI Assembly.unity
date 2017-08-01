@@ -2454,7 +2454,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Unlocked: 1
   Name: ALLOY ROAD
-  Description: Made from some weird shit
+  Description: A lightweight durasteel-flexiglass-nanododecahedral alloy provides
+    a super smooth surface for vehicles to glide along with near-zero resistance.
+    Unfortunately, it is also very brittle.
   BuildCost: 3000
   RepairCost: 1500
   RoadSpeed: 4
@@ -4464,7 +4466,7 @@ MonoBehaviour:
     m_LineSpacing: 0.8
   m_Text: 'ATMOSPHERIC ANALYSIS   74% GASEOUS TURGLE    14% METHANE    12% NITROGEN
 
-    PLANETARY ANALYSIS    84% LAND    10% LIQUID WATER    6% LIQUID TURGLE
+    PLANETARY SURFACE ANALYSIS    84% LAND    10% LIQUID WATER    6% LIQUID TURGLE
 
 
     An atmosphere of deadly toxins makes Planet Turgle largely inhospitable for organic
@@ -4852,7 +4854,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1.8, y: -0}
+  m_AnchoredPosition: {x: -2.7, y: -8.4}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1001410418
@@ -4876,7 +4878,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: c7bacf7c5578acb4c9f23ce4092d1e56, type: 3}
-    m_FontSize: 18
+    m_FontSize: 16
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -4887,7 +4889,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 0.7
-  m_Text: REG_09
+  m_Text: 'DIAMOND
+
+    ROAD'
 --- !u!222 &1001410419
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5312,7 +5316,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 2.8, y: -2.6}
+  m_AnchoredPosition: {x: -0.9, y: -1.7}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1103920736
@@ -5347,7 +5351,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 0.7
-  m_Text: REG_12
+  m_Text: 'METEOR
+
+    ROAD'
 --- !u!222 &1103920737
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9728,7 +9734,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Unlocked: 1
   Name: DIAMOND ROAD
-  Description: Soooooo shiny it's crazy
+  Description: Industrial diamond trade crashed and became literally cheaper than
+    dirt for a short period in the 2150's. Many other uses have been found for this
+    diamond, including as paving stones for roads.
   BuildCost: 4000
   RepairCost: 1000
   RoadSpeed: 1
@@ -11240,7 +11248,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 0.7
-  m_Text: REG_88
+  m_Text: 'ALLOY
+
+    ROAD'
 --- !u!222 &2033107741
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11655,7 +11665,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Unlocked: 1
   Name: METEOR ROAD
-  Description: we used meteor rocks to make a road
+  Description: Inubonitanium, while making a great power source, also makes for a
+    great road. Turns out this material is useful for almost anything. Who knows where
+    science will take it next?
   BuildCost: 8000
   RepairCost: 4000
   RoadSpeed: 3

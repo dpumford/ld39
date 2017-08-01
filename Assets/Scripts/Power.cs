@@ -6,10 +6,10 @@ using UnityEngine;
 
 public class Power : MonoBehaviour
 {
-    public Sprite LeftSprite;
-    public Sprite RightSprite;
-    public Sprite UpSprite;
-    public Sprite DownSprite;
+    public Sprite[] HorizontalSprites;
+    public Sprite[] VerticalSprites;
+
+    public float AnimationSeconds = 0.5f;
 
     public AudioClip PowerCreation;
     public AudioClip PowerAbsorption;
@@ -24,6 +24,9 @@ public class Power : MonoBehaviour
 
     private SpriteRenderer _renderer;
     private AudioSource _soundPlayer;
+
+    private int _currentSprite;
+    private float _animationTimer;
 
 	// Use this for initialization
 	void Start ()
@@ -83,6 +86,16 @@ public class Power : MonoBehaviour
 	            }
 	        }
 	    }
+
+	    if (_animationTimer > AnimationSeconds)
+	    {
+	        _currentSprite = (_currentSprite + 1) % Math.Min(HorizontalSprites.Length, VerticalSprites.Length);
+	        _animationTimer = 0;
+	    }
+	    else
+	    {
+	        _animationTimer += Time.deltaTime;
+	    }
 	}
 
     private Vector2 RotateTo(Vector3 destination)
@@ -91,21 +104,13 @@ public class Power : MonoBehaviour
                         .normalized;
         var directionRadians = Mathf.Atan2(direction.y, direction.x);
 
-        if (directionRadians >= 0 && directionRadians < Mathf.PI / 2f)
+        if ((directionRadians >= 0 && directionRadians < Mathf.PI / 2f) || (directionRadians >= Mathf.PI && directionRadians < Mathf.PI * 3f / 2f))
         {
-            _renderer.sprite = RightSprite;
-        }
-        else if (directionRadians >= Mathf.PI / 2f && directionRadians < Mathf.PI)
-        {
-            _renderer.sprite = UpSprite;
-        }
-        else if (directionRadians >= Mathf.PI && directionRadians < Mathf.PI * 3f / 2f)
-        {
-            _renderer.sprite = LeftSprite;
+            _renderer.sprite = HorizontalSprites[_currentSprite];
         }
         else
         {
-            _renderer.sprite = DownSprite;
+            _renderer.sprite = VerticalSprites[_currentSprite];
         }
 
         return direction;

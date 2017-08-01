@@ -159,10 +159,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e551ae80dc28a34dab78af12b603b1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LeftSprite: {fileID: 21300000, guid: 2cbf85ab011d5e943a962da178ff3492, type: 3}
-  RightSprite: {fileID: 21300002, guid: 2cbf85ab011d5e943a962da178ff3492, type: 3}
-  UpSprite: {fileID: 21300004, guid: 2cbf85ab011d5e943a962da178ff3492, type: 3}
-  DownSprite: {fileID: 21300006, guid: 2cbf85ab011d5e943a962da178ff3492, type: 3}
+  HorizontalSprites:
+  - {fileID: 21300000, guid: 2cbf85ab011d5e943a962da178ff3492, type: 3}
+  - {fileID: 21300002, guid: 2cbf85ab011d5e943a962da178ff3492, type: 3}
+  VerticalSprites:
+  - {fileID: 21300004, guid: 2cbf85ab011d5e943a962da178ff3492, type: 3}
+  - {fileID: 21300006, guid: 2cbf85ab011d5e943a962da178ff3492, type: 3}
+  AnimationSeconds: 0.5
   PowerCreation: {fileID: 8300000, guid: 7aa584ac34d86724ba9f54065c76b434, type: 3}
   PowerAbsorption: {fileID: 8300000, guid: fbf59c1ffa643c84c9ddaca227abf9ac, type: 3}
   PowerDestroy: {fileID: 8300000, guid: bb66ddde41f834042b0bc4ad38f2a610, type: 3}

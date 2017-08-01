@@ -9,7 +9,7 @@ public class Power : MonoBehaviour
     public Sprite[] HorizontalSprites;
     public Sprite[] VerticalSprites;
 
-    public float AnimationSeconds = 0.5f;
+    public float AnimationSeconds = 0.1f;
 
     public AudioClip PowerCreation;
     public AudioClip PowerAbsorption;

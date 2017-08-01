@@ -15,7 +15,7 @@ namespace Assets.Scripts
         public float PowerDecreaseSeconds = .001f;
         public int PowerDecreaseAmount = -1;
 
-        public int MeteorPowerDamage = 10000;
+        public int MeteorPowerDamage = 5000;
 
         private float _powerTimer;
 

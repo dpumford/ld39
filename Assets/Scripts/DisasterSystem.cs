@@ -33,12 +33,14 @@ public class DisasterSystem : MonoBehaviour
     private float _meteorShowerTimer;
 
     private List<ImpendingMeteor> _impendingMeteors;
+    private UiController _uiController;
 
 	// Use this for initialization
 	void Start ()
 	{
 	    _grid = GetComponent<Grid>();
         _impendingMeteors = new List<ImpendingMeteor>();
+        _uiController = GameObject.FindObjectOfType<UiController>();
 	}
 	
 	// Update is called once per frame
@@ -47,6 +49,7 @@ public class DisasterSystem : MonoBehaviour
 	    if (_meteorShowerTimer > MeteorShowerSeconds * MeteorShowerPredictionPercent && !_impendingMeteors.Any())
 	    {
 	        var meteorsToDrop = PickTargets();
+            _uiController.SetLiveMeteors(meteorsToDrop.Count());
 
 	        for (var m = 0; m < meteorsToDrop.Count; m++)
 	        {
@@ -63,7 +66,7 @@ public class DisasterSystem : MonoBehaviour
 	    {
             _impendingMeteors.Clear();
 	        _meteorShowerTimer = 0;
-	    }
+        }
 	    else
 	    {
 	        _meteorShowerTimer += Time.deltaTime;

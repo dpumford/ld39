@@ -3714,6 +3714,7 @@ MonoBehaviour:
   SpaceWeek: 3
   SpaceMonth: 11
   SpaceYear: 2197
+  MeteorAlert: {fileID: 821876080}
   TransferAmount: {fileID: 1710042478}
   Grid: {fileID: 42087477}
   Mode: 1
@@ -4507,8 +4508,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 714.1631, y: 341.48447, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1813698597}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
